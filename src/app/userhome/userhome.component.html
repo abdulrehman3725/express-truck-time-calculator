@@ -1,0 +1,126 @@
+<div class="container custom-css1">
+  <button (click)="openModal('custom-modal-1')" class="waves-effect waves-light btn-large white teal-text custom-css2"
+    id="myBtn" type="button">New Driver Assignment</button>
+    <br><br><br>
+  <table>
+    <tr class="font-color">
+      <th class="grey rad">Name</th>
+      <th class="grey rad">Route Code</th>
+      <th class="light-green rad">Appointment</th>
+      <th class="red rad">Scheduled</th>
+      <th class="blue rad">Arrival</th>
+      <th class="blue rad">Status</th>
+      <th class="pink rad">Departure</th>
+      <th class="light-blue rad">HOS Count Down</th>
+      <th class="light-blue rad">Count Down End</th>
+      <th class="pink rad">Drop Off</th>
+      <th class="pink rad">Duration</th>
+      <th class="orange rad">Wait</th>
+      <th class="green rad">Next Reset</th>
+      <th class="teal rad2 textAlign" colspan="5">ACTIONS</th>
+    </tr>
+    <tr class="font-color" *ngFor="let assignment of assignService.assignments">
+      <td class="grey rad">{{assignment.name}}</td>
+      <td class="grey rad">{{assignment.code}}</td>
+      <td class="light-green rad">{{assignment.appointmentTime | date:'dd-LLL HH:mm:ss'}}</td>
+      <td class="red rad">{{assignment.scheduledTime | date:'dd-LLL HH:mm:ss'}}</td>
+      <td class="blue rad">{{assignment.actualArrival | date:'dd-LLL HH:mm:ss'}}</td>
+      <td class="blue rad">{{assignment.status}}</td>
+      <td class="pink rad">{{assignment.departTime | date:'dd-LLL HH:mm:ss'}}</td>
+      <!-- <td>{{assignment.hosCount}}</td> -->
+      <!-- COUNTDOWN TUTORIAL=>https://www.npmjs.com/package/ngx-countdown -->
+      <td class="light-blue rad"><countdown *ngIf="assignment.status" [config]="configureHos(assignment.status,assignment.actualArrival,assignment.countEndTime,assignment._id)"> $!h!:$!m!:$!s!</countdown></td>
+      <td class="light-blue rad">{{assignment.countEndTime | date:'dd-LLL HH:mm:ss'}}</td>
+      <td class="pink rad">{{assignment.dropOffTime | date:'dd-LLL HH:mm:ss'}}</td>
+      <td class="pink rad">{{convert(assignment.duration)}}</td>
+      <td class="orange rad" *ngIf="waitingTimeBool(assignment.waitingTime)"><countdown *ngIf="assignment.status" [config]="configureWaiting(assignment.status,assignment.waitingTime,assignment.duration,assignment.dropOffTime,assignment.actualArrival,assignment.countEndTime,assignment._id)"> $!h!:$!m!:$!s!</countdown>
+      <td class="orange rad" *ngIf="assignment.waitingTime"> {{waitingTime(assignment.waitingTime)}}</td> 
+      <td class="green rad">{{assignment.nextReset | date:'dd-LLL HH:mm:ss'}}</td>
+      <td class="teal rad2"><button class="waves-effect waves-light btn white teal-text" (click)="openModalArrival('custom-modal-2',assignment)">Arrived</button></td>
+      <td class="teal rad2"><button class="waves-effect waves-light btn white teal-text" (click)="openModalDeparture('custom-modal-3',assignment)">Departed</button></td>
+      <td class="teal rad2"><button class="waves-effect waves-light btn white teal-text" (click)="openModalDropOff('custom-modal-4',assignment)">Dropped</button></td>
+      <td class="teal rad2"><button class="waves-effect waves-light btn white teal-text" (click)="deleteAssignment(assignment._id)">Delete</button></td>
+      <td class="teal rad2"><button class="waves-effect waves-light btn white teal-text" (click)="openModal('custom-modal-1',assignment)">Edit</button></td>
+    </tr>
+  </table>
+
+</div>
+
+
+<!-- Modal Dialog Box -->
+<!-- Jw-modal Tutorial http://jasonwatmore.com/post/2018/05/25/angular-6-custom-modal-window-dialog-box -->
+<jw-modal id="custom-modal-1">
+  <div style="height: 500px; background: white;">
+    <div class="bstContainer">
+      <button class="bstClose" (click)="closeModal('custom-modal-1');">X</button>
+      <h3 class="modal-heading">New Driver Assingment</h3>
+      <form (ngSubmit)="onSubmit(driverForm)" #driverForm="ngForm">
+        <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="assignService.assignment._id">
+        Driver: <select name="name" #name="ngModel" [(ngModel)]="assignService.assignment.name" class="driverSelect" placeholder="select driver" required>
+          <option value="" disabled hidden selected>Select Category</option>
+          <option *ngFor="let driver of driverService.drivers" [value]="driver.name">{{driver.name}}</option>
+        </select>
+        Route Code: <input name="code" #code="ngModel"  [(ngModel)]="assignService.assignment.code" type="text" required placeholder="Enter Fullname">
+        Appointment Time: <input type="datetime-local" name="appointmentTime" #appointmentTime="ngModel"  [(ngModel)]="date" required>
+        <button type="submit" [disabled]="!driverForm.valid">Submit</button>
+        <button type="reset" (click)="resetForm(driverForm)">Reset</button>
+      </form>
+    </div>
+  </div>
+</jw-modal>
+
+<!--Actual Arrival Time Modal Dialog Box -->
+<!-- Jw-modal Tutorial http://jasonwatmore.com/post/2018/05/25/angular-6-custom-modal-window-dialog-box -->
+ <jw-modal id="custom-modal-2">
+    <div style="height: 500px; background: white;">
+      <div class="bstContainer">
+        <button class="bstClose" (click)="closeModal('custom-modal-2');">X</button>
+        <h3 class="modal-heading">Actual Arrival</h3>
+        <form (ngSubmit)="onSubmit2(arrivalForm)" #arrivalForm="ngForm">
+          <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="assignService.assignment._id">
+          <input type="hidden" name="scheduledTime" #scheduledTime="ngModel" [(ngModel)]="assignService.assignment.scheduledTime">
+          <input type="hidden" name="status" #status="ngModel" [(ngModel)]="assignService.assignment.status">
+          <input type="hidden" name="nextReset" #nextReset="ngModel" [(ngModel)]="assignService.assignment.nextReset">
+          Arrival Time: <input required type="datetime-local" name="actualArrival" #name="ngModel" [(ngModel)]="assignService.assignment.actualArrival" >
+          <button class="btn btn-custom right" type="submit" [disabled]="!arrivalForm.valid">Submit</button>
+        </form>
+      </div>
+    </div>
+  </jw-modal>
+  
+  <!-- Departure Time Modal Dialog Box -->
+<!-- Jw-modal Tutorial http://jasonwatmore.com/post/2018/05/25/angular-6-custom-modal-window-dialog-box -->
+ <jw-modal id="custom-modal-3">
+    <div style="height: 500px; background: white;">
+      <div class="bstContainer">
+        <button class="bstClose" (click)="closeModal('custom-modal-3');">X</button>
+        <h3 class="modal-heading">Departure Time</h3>
+        <form (ngSubmit)="onSubmit3(departForm)" #departForm="ngForm">
+          <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="assignService.assignment._id">
+          Depart Time: <input required type="datetime-local" name="departTime" #name="ngModel" [(ngModel)]="assignService.assignment.departTime" >
+          <button class="btn btn-custom right" type="submit" [disabled]="!departForm.valid">Submit</button>
+        </form>
+      </div>
+    </div>
+  </jw-modal>
+
+
+<!-- Drop off Modal Dialog Box -->
+<!-- Jw-modal Tutorial http://jasonwatmore.com/post/2018/05/25/angular-6-custom-modal-window-dialog-box -->
+ <jw-modal id="custom-modal-4">
+    <div style="height: 500px; background: white;">
+      <div class="bstContainer">
+        <button class="bstClose" (click)="closeModal('custom-modal-4');">X</button>
+        <h3 class="modal-heading">Drop off Time</h3>
+        <form (ngSubmit)="onSubmit4(dropOffForm)" #dropOffForm="ngForm">
+          <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="assignService.assignment._id">
+          <input type="hidden" name="departTime" #departTime="ngModel" [(ngModel)]="assignService.assignment.departTime">
+          <input type="hidden" name="duration" #duration="ngModel" [(ngModel)]="assignService.assignment.duration">
+          Depart Time: <input required type="datetime-local" name="dropOffTime" ngModel >
+          <!-- #name="ngModel" [(ngModel)]="assignService.assignment.dropOffTime" > -->
+          <button class="btn btn-custom right" type="submit" [disabled]="!dropOffForm.valid">Submit</button>
+        </form>
+      </div>
+    </div>
+  </jw-modal>
+  

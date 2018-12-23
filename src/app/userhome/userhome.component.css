@@ -1,0 +1,215 @@
+.custom-css1 {
+  max-width: 1400px !important;
+  width: 100% !important;
+
+}
+
+.custom-css2 {
+  font-size: 18px;
+  border-radius: 5px;
+  margin-top: 2%;
+  font-weight: 500;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+  /* Modal Box  */
+  .modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+  }
+
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    /* Could be more or less, depending on screen size */
+  }
+
+  /* The Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .modalUp{
+    width: 34%;
+    float: left;
+  }
+
+  .bstSeller{
+    float: left;
+    height: 40px;
+  }
+
+  .bstClose{
+    float: right;
+    font-size: 21px;
+    color: #777;
+    border: none;
+    font-family: proxima-nova, sans-serif;
+    margin-right: 32px;
+    margin-top: -19px;
+    background: white;
+  }
+
+  .bstContainer{
+    /* margin: 18px 29px; */
+    width:100%;
+  }
+
+  .unisex{
+    float:right;
+    background: url(https://cdn.scentbird.com/assets/frontbird-site/images/unisex_3227f9.svg);
+    width: 32px;
+    height: 32px;
+    background-size: 100% auto;
+    top: 10px;
+    right: 10px;
+    font-size: 25px;
+  }
+
+  .modalUpSub{
+    float: left;
+    margin: 16px 31px;
+    font-family: proxima-nova, sans-serif;
+  }
+
+  .modalUpSubRight{
+    float:left;
+    margin-left: 30px;
+  }
+
+  .T6BXmO2 {
+    height: 65px;
+    float: left;
+    margin-left: -15px;
+  }
+
+  .modalUpSub div p{
+    float: left;
+    margin-top: 9px;
+  }
+
+  .quickView{
+    background-color: #ca3838;
+    width: 356px;
+    border: none;
+    color: white;
+    margin-top: 20px;
+    height: 50px;
+    font-size: 20px;
+    text-transform: uppercase;
+  }
+
+  .subBorder1{
+    border: 1px solid #ca3838;
+    float: left;
+    margin-right: 6px;
+    margin-top: 10px;
+    padding-right: 8px;
+  }
+
+  .subBorder2{
+    border: 1px solid #aaa;
+    float: left;
+    margin-right: 5px;
+    margin-top: 10px;
+    padding-right: 8px;
+  }
+
+  .T6BXmO3{
+    height: 43px;
+    float: left;
+    margin-left: 0px;
+  }
+
+  .subBorder1 p{
+    float: left;
+    margin-top: 9px;
+    font-size: 15px;
+  }
+
+  .subBorder2 p{
+    float: left;
+    margin-top: 9px;
+    font-size: 15px;
+  }
+
+  .T6BXmO2 {
+    height: 65px;
+    float: left;
+    margin-left: -15px;
+  }
+
+  .itemsBox{
+    width: 365px;
+    margin-top: 18px;
+  }
+
+  .mainNotes{
+    clear: both;
+  }
+
+  .noteImg
+  {
+    width: 44px;
+    float: left;
+    margin-right: 45px;
+    margin-top: 10px;
+    margin-left: -35px;
+  }
+
+  .modal-heading{
+    text-align: center;
+  }
+
+  .driverSelect{
+    display: block;
+  }
+
+  .font-color{
+    color:white;
+  }
+
+  .rad{
+    border-radius: 0%;
+    border: 1px solid black;
+  }
+
+  .rad2{
+    border-radius: 0%;
+  }
+
+  .textAlign{
+    text-align: center;
+  }

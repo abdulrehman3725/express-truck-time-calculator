@@ -1,0 +1,15 @@
+button:disabled {
+    background-color: black !important;
+ }
+
+ button:enabled{
+     background-color: brown;
+ }
+
+ .input-field label {
+    position: static !important;
+ }
+
+ table.highlight>tbody>tr:hover {
+    color: black;
+}
