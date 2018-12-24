@@ -8,7 +8,7 @@ export class DriverService {
   selectedDriver: Driver;
   drivers: Driver[];
 
-  readonly baseUrl = 'http://localhost:3000/drivers';
+  readonly baseUrl = 'http://18.222.30.145:3000/drivers';
 
 
   constructor(private http: HttpClient) { }

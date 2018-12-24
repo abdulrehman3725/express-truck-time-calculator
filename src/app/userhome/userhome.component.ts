@@ -219,7 +219,7 @@ export class UserhomeComponent implements OnInit {
     return this.configure;
   }
   
-  constructor(private assignService: AssignService,private driverService: DriverService,private _user:UserService, private _router:Router,private modalService: ModalService) {
+  constructor(public assignService: AssignService,public driverService: DriverService,public _user:UserService, public _router:Router,public modalService: ModalService) {
     this._user.user()
     .subscribe(
       data=>this.addName(data),

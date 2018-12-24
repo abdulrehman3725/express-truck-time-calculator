@@ -22,7 +22,7 @@ export class AppComponent {
 
   isLoggedIn: Boolean;
 
-  constructor(private _user: UserService, private _router: Router) {}
+  constructor(public _user: UserService, public _router: Router) {}
 
   ngOnInit() {
     // this._user.user()

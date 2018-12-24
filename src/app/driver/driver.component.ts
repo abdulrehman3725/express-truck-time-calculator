@@ -17,7 +17,7 @@ declare var M:any;
 })
 export class DriverComponent implements OnInit {
 
-  constructor(private driverService: DriverService/*, private _user:UserService, private _router:Router*/) {
+  constructor(public driverService: DriverService/*, private _user:UserService, private _router:Router*/) {
     // this._user.user()
     // .subscribe(
     //   data=>console.log(data),
