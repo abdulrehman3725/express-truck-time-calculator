@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "concurrently \"http-server ./app -a 0.0.0.0 -p 4200 -c-1\" \"nodemon backend\"",
+    "start": "concurrently \"ng serve\" \"nodemon backend\"",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
