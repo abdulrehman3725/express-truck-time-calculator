@@ -12,12 +12,12 @@ var usersRouter = require('./routes/user');
 var app = express();
 app.use(bodyParser.json());
 app.use(cors({
-    origin:['http://18.222.30.145:4200','http://127.0.0.1:4200'],
+    origin:['http://localhost:4200','http://127.0.0.1:4200'],
     credentials:true
 }));
 
 // app.use(cors({origin:'http://127.0.0.1:4200'}));
-app.listen(3000, ()=>console.log('Server started at port : 3000'));
+app.listen(8080, ()=>console.log('Server started at port : 8080'));
 
 app.use("/drivers",driverController);
 app.use("/assignment",assignmentController);
