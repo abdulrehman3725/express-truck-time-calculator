@@ -76,8 +76,10 @@ router.put('/editAssign/:id',(req,res)=>{
         name: req.body.name,
         code: req.body.code,
         appointmentTime: req.body.appointmentTime,
-        scheduledTime:req.body.scheduledTime
+        scheduledTime:req.body.scheduledTime,
+        countEndTime: null
     };
+
     Assignment.findByIdAndUpdate(req.params.id,{$set:assignment},{new:true},(err,doc)=>{
         if(!err)
             res.send(doc);

@@ -54,7 +54,7 @@
     <div class="bstContainer">
       <button class="bstClose" (click)="closeModal('custom-modal-1');">X</button>
       <h3 class="modal-heading">New Driver Assingment</h3>
-      <form (ngSubmit)="onSubmit(driverForm)" #driverForm="ngForm">
+      <form (ngSubmit)="onSubmit(driverForm,'custom-modal-1')" #driverForm="ngForm">
         <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="assignService.assignment._id">
         Driver: <select name="name" #name="ngModel" [(ngModel)]="assignService.assignment.name" class="driverSelect" placeholder="select driver" required>
           <option value="" disabled hidden selected>Select Category</option>
@@ -76,7 +76,7 @@
       <div class="bstContainer">
         <button class="bstClose" (click)="closeModal('custom-modal-2');">X</button>
         <h3 class="modal-heading">Actual Arrival</h3>
-        <form (ngSubmit)="onSubmit2(arrivalForm)" #arrivalForm="ngForm">
+        <form (ngSubmit)="onSubmit2(arrivalForm,'custom-modal-2')" #arrivalForm="ngForm">
           <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="assignService.assignment._id">
           <input type="hidden" name="scheduledTime" #scheduledTime="ngModel" [(ngModel)]="assignService.assignment.scheduledTime">
           <input type="hidden" name="status" #status="ngModel" [(ngModel)]="assignService.assignment.status">
@@ -95,7 +95,7 @@
       <div class="bstContainer">
         <button class="bstClose" (click)="closeModal('custom-modal-3');">X</button>
         <h3 class="modal-heading">Departure Time</h3>
-        <form (ngSubmit)="onSubmit3(departForm)" #departForm="ngForm">
+        <form (ngSubmit)="onSubmit3(departForm,'custom-modal-3')" #departForm="ngForm">
           <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="assignService.assignment._id">
           Depart Time: <input required type="datetime-local" name="departTime" #name="ngModel" [(ngModel)]="assignService.assignment.departTime" >
           <button class="btn btn-custom right" type="submit" [disabled]="!departForm.valid">Submit</button>
@@ -112,7 +112,7 @@
       <div class="bstContainer">
         <button class="bstClose" (click)="closeModal('custom-modal-4');">X</button>
         <h3 class="modal-heading">Drop off Time</h3>
-        <form (ngSubmit)="onSubmit4(dropOffForm)" #dropOffForm="ngForm">
+        <form (ngSubmit)="onSubmit4(dropOffForm,'custom-modal-4')" #dropOffForm="ngForm">
           <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="assignService.assignment._id">
           <input type="hidden" name="departTime" #departTime="ngModel" [(ngModel)]="assignService.assignment.departTime">
           <input type="hidden" name="duration" #duration="ngModel" [(ngModel)]="assignService.assignment.duration">

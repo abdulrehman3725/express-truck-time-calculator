@@ -340,8 +340,8 @@ export class UserhomeComponent implements OnInit {
       }
     }
 
-  onSubmit4(form:NgForm){
-    
+  onSubmit4(form:NgForm, id:string){
+
       var time1 = new Date(form.value.departTime);
       var time2 = new Date(form.value.dropOffTime);
 
@@ -357,23 +357,26 @@ export class UserhomeComponent implements OnInit {
       // var time3 = new Date(form.value.duration);
       // console.log(time3);
     
+      form.value.dropOffTime = time2;
       this.assignService.putDropOff(form.value).subscribe((res) =>{
       this.refreshAssignmentList();
       M.toast({html: 'Updated Successfully',classes: 'rounded'});
     });
 
+    this.closeModal(id);
   }
 
-  onSubmit3(form:NgForm){
+  onSubmit3(form:NgForm, id:string){
     
+    form.value.departTime = new Date(form.value.departTime);
     this.assignService.putDepart(form.value).subscribe((res) =>{
     this.refreshAssignmentList();
     M.toast({html: 'Updated Successfully',classes: 'rounded'});
   });
-
+  this.closeModal(id);
 }
 
-  onSubmit2(form:NgForm){
+  onSubmit2(form:NgForm, id:string){
 
     var scheduled = new Date(form.value.scheduledTime);
     var arrived = new Date(form.value.actualArrival);
@@ -390,24 +393,30 @@ export class UserhomeComponent implements OnInit {
     date.setMinutes(date.getMinutes() + 30);
     form.value.nextReset = date;
     
+    form.value.actualArrival = arrived;
+    
       this.assignService.putAssign(form.value).subscribe((res) =>{
       this.refreshAssignmentList();
       M.toast({html: 'Updated Successfully',classes: 'rounded'});
     });
 
+    this.closeModal(id);
   }
 
-  onSubmit(form:NgForm){
+  onSubmit(form:NgForm, id:string){
 
     if(form.value._id == "" || form.value._id == null)
     {
-      console.log('Apointment Time = ' + form.value.appointmentTime+' Fullname = ' + form.value.driver);
+      console.log('Apointment Time = ' + form.value.appointmentTime+' Fullname = ' + form.value.name);
       var date = new Date(form.value.appointmentTime);
       date.setHours(date.getHours() - 1);
       console.log('1 hour prior = '+date);
+      console.log('Appointment Time = '+date);
+
+      var date3= new Date(form.value.appointmentTime);
 
       // var date2 = date.toString();
-      this.formValues = new Assign(form.value.name,form.value.code,form.value.appointmentTime , date);
+      this.formValues = new Assign(form.value.name,form.value.code,date3 , date);
 
       this.assignService.postAssign(this.formValues).subscribe((res) =>{
         this.refreshAssignmentList();
@@ -422,13 +431,16 @@ export class UserhomeComponent implements OnInit {
       console.log('name '+form.value.name);
       console.log('scheduled time = '+form.value.scheduledTime);
       form.value.scheduledTime = date;
+      form.value.appointmentTime =  new Date(form.value.appointmentTime);
       console.log('scheduled time = '+form.value.scheduledTime);
+
       this.assignService.putAssignEdit(form.value).subscribe((res) =>{
         this.resetForm(form);
         this.refreshAssignmentList();
         M.toast({html: 'Updated Successfully',classes: 'rounded'});
       });
     }
+    this.closeModal(id);
   }
 
   onAssignment(driver:Assign)

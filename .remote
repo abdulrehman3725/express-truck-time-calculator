@@ -1,0 +1,12 @@
+{
+  "autoConnect": true,
+  "connection": {
+    "host": "18.216.87.18",
+    "username": "ubuntu",
+    "privateKey": "E:/Abdul Rehman Khan/Clients/Freelancer/kevin/aws/key pair/genethc.ppk",
+    "passphrase": "Abdul Rehman",
+    "port": "22"
+  },
+  "basePath": "./home/ubuntu/express-truck-time-calculator",
+  "ignore": [".git", "src/node_modules"]
+}
