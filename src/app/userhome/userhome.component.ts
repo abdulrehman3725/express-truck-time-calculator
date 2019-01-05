@@ -433,14 +433,13 @@ export class UserhomeComponent implements OnInit {
       form.value.scheduledTime = date;
       form.value.appointmentTime =  new Date(form.value.appointmentTime);
       console.log('scheduled time = '+form.value.scheduledTime);
-
       this.assignService.putAssignEdit(form.value).subscribe((res) =>{
         this.resetForm(form);
         this.refreshAssignmentList();
         M.toast({html: 'Updated Successfully',classes: 'rounded'});
       });
     }
-    this.closeModal(id);
+    this.modalService.close(id);
   }
 
   onAssignment(driver:Assign)
