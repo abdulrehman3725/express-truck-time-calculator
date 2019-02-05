@@ -12,7 +12,7 @@ export class UserService {
 
   register(body:any)
   {
-    return this._http.post("http://18.216.87.18:8080/users/register",body,{
+    return this._http.post("http://3.16.214.113:8080/users/register",body,{
       observe:'body',
       headers:new HttpHeaders().append('Content-Type','application/json')
     });
@@ -20,7 +20,7 @@ export class UserService {
 
   login(body:any)
   {
-    return this._http.post("http://18.216.87.18:8080/users/login",body,{
+    return this._http.post("http://3.16.214.113:8080/users/login",body,{
       observe:'body',
       withCredentials:true,
       headers:new HttpHeaders().append('Content-Type','application/json')
@@ -29,7 +29,7 @@ export class UserService {
 
   user()
   {
-    return this._http.get("http://18.216.87.18:8080/users/user",{
+    return this._http.get("http://3.16.214.113:8080/users/user",{
       observe:'body',
       withCredentials:true,
       headers:new HttpHeaders().append('Content-Type','application/json')
@@ -38,7 +38,7 @@ export class UserService {
 
   logout()
   {
-    return this._http.get("http://18.216.87.18:8080/users/logout",{
+    return this._http.get("http://3.16.214.113:8080/users/logout",{
       observe:'body',
       withCredentials:true,
       headers:new HttpHeaders().append('Content-Type','application/json')
@@ -47,7 +47,7 @@ export class UserService {
   
   drivers()
   {
-    return this._http.get("http://18.216.87.18:8080/drivers",{
+    return this._http.get("http://3.16.214.113:8080/drivers",{
       observe:'body',
       withCredentials:true,
       headers:new HttpHeaders().append('Content-Type','application/json')

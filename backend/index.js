@@ -12,7 +12,7 @@ var usersRouter = require('./routes/user');
 var app = express();
 app.use(bodyParser.json());
 app.use(cors({
-    origin:['http://18.216.87.18:4200','http://127.0.0.1:4200'],
+    origin:['http://3.16.214.113','http://127.0.0.1'],
     credentials:true
 }));
 

@@ -10,7 +10,7 @@ export class AssignService {
   assignment: Assign;
   assignments: Assign[];
 
-  readonly baseUrl = 'http://18.216.87.18:8080/assignment';
+  readonly baseUrl = 'http://3.16.214.113:8080/assignment';
 
   constructor(private http: HttpClient) { }
 
